@@ -1,1 +1,15 @@
+[Unit]
+Description=Ludo Arena Telegram Bot
+After=network.target
 
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/opt/ludo-arena
+EnvironmentFile=/opt/ludo-arena/.env
+ExecStart=/opt/ludo-arena/venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8080
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
