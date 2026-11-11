@@ -1,5 +1,120 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>
-*{box-sizing:border-box}body{margin:0;background:#080313;color:#fff;font:14px system-ui,-apple-system,sans-serif}.wrap{padding:9px;background:radial-gradient(ellipse at 50% 28%,#321064 0,#10051f 48%,#07020f 100%);border:1px solid #8b2cff;border-radius:18px;box-shadow:0 0 18px #9b27ff88}.top{display:flex;align-items:center;justify-content:space-between;gap:6px}.brand{font-weight:1000;font-size:19px;font-style:italic;letter-spacing:1px;color:#fff;text-shadow:0 0 8px #c45cff}.online{font-size:10px;color:#6effbd;border:1px solid #7930bd;border-radius:30px;padding:5px 8px}.avatar{width:35px;height:35px;border-radius:50%;border:2px solid #d34bff;background:linear-gradient(135deg,#251047,#080313);display:grid;place-items:center;font-size:21px}.royal{margin:10px 0 8px;text-align:center;border:1px solid #b348ff;border-radius:13px;padding:7px;background:linear-gradient(110deg,#17072c,#38116c,#13051f);color:#ffd66d;font-family:Georgia,serif;font-weight:bold;letter-spacing:2px;text-shadow:0 0 9px #ffb83e}.headline{text-align:center;font-size:20px;font-weight:900;font-style:italic;color:#fff;text-shadow:0 0 9px #b32cff}.sub{text-align:center;color:#d9c9f7;font-size:11px;margin:2px 0 8px}.board{position:relative;margin:7px auto 9px;width:min(100%,250px);aspect-ratio:1.6;border:3px solid #b77bff;border-radius:16px;padding:8px;background:linear-gradient(135deg,#21103c,#090513);box-shadow:0 0 18px #a52cff99}.grid{height:100%;display:grid;grid-template:repeat(6,1fr)/repeat(6,1fr);gap:2px;transform:perspective(500px) rotateX(4deg)}.cell{border:1px solid #b9a5d6;background:#f7f0ff;min-width:0}.r{background:#ff4c69}.g{background:#40d77b}.y{background:#ffcf42}.b{background:#48a9ff}.center{grid-area:3/3/5/5;background:conic-gradient(#ff405f 0 25%,#ffce36 0 50%,#32d779 0 75%,#398dff 0);display:grid;place-items:center;font-size:28px;text-shadow:0 2px 4px #111}.pawn{position:absolute;font-size:23px;filter:drop-shadow(0 2px 2px #000)}.p1{top:19%;left:15%}.p2{top:19%;right:15%}.p3{bottom:15%;left:15%}.p4{bottom:15%;right:15%}.stats{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:8px 0}.stat{border:1px solid #a63cff;border-radius:10px;padding:7px;background:#170a2c;text-align:center}.stat small{display:block;color:#d7c4fa;font-size:10px}.stat strong{font-size:18px;color:#ffd66d}.cards{display:grid;grid-template-columns:1fr 1fr;gap:7px}.card{border:1px solid #a638ff;border-radius:12px;background:linear-gradient(130deg,#271044,#10051f);min-height:48px;padding:8px 5px;color:white;text-align:center;font-weight:800;font-size:12px;text-shadow:0 0 6px #a72dff;box-shadow:inset 0 0 12px #7d20bb33}.card .ico{font-size:21px;display:block;margin-bottom:2px}.card:active{background:#482071}.wide{grid-column:1/-1;min-height:36px}.nav{display:grid;grid-template-columns:repeat(4,1fr);margin-top:9px;border-top:1px solid #7030a5;padding-top:7px}.nav button{border:0;background:transparent;color:#c9a9f7;font-size:10px;padding:5px 0}.nav b{display:block;font-size:19px}.nav .active{color:#fff;text-shadow:0 0 10px #c42cff}.foot{text-align:center;color:#ffd36b;font-size:10px;margin-top:4px}#status{text-align:center;color:#e9d6ff;font-size:10px;min-height:13px;margin-top:3px}
-</style></head><body><main class="wrap"><header class="top"><div class="brand">👑 LUDO ARENA</div><div class="online">🟢 ARENA ONLINE</div><div class="avatar">👑</div></header><div class="royal">♛ THE ROYAL BOARD ♛</div><div class="headline">Your arena. Your victory.</div><div class="sub">Roll in. Rise up. Rule the board.</div><section class="board"><div class="grid"><i class="cell r"></i><i class="cell r"></i><i class="cell"></i><i class="cell g"></i><i class="cell g"></i><i class="cell g"></i><i class="cell r"></i><i class="cell r"></i><i class="cell"></i><i class="cell g"></i><i class="cell g"></i><i class="cell g"></i><i class="cell"></i><i class="cell"></i><i class="cell"></i><i class="cell"></i><i class="cell"></i><i class="cell"></i><i class="cell y"></i><i class="cell y"></i><i class="cell"></i><i class="cell"></i><i class="cell b"></i><i class="cell b"></i><i class="cell y"></i><i class="cell y"></i><i class="cell"></i><i class="cell"></i><i class="cell b"></i><i class="cell b"></i><i class="cell y"></i><i class="cell y"></i><i class="cell"></i><i class="cell"></i><i class="cell b"></i><i class="cell b"></i><div class="center">🎲</div></div><span class="pawn p1">🔴</span><span class="pawn p2">🟢</span><span class="pawn p3">🟡</span><span class="pawn p4">🔵</span></section><div class="stats"><div class="stat"><small>🪙 YOUR COINS</small><strong id="coins">0</strong></div><div class="stat"><small>🏆 YOUR WINS</small><strong id="wins">0</strong></div></div><section class="cards"><button class="card" data-a="solo"><span class="ico">🛡️</span>PLAY SOLO<small>Challenge AI</small></button><button class="card" data-a="friends"><span class="ico">👥</span>PLAY WITH FRIENDS<small>Private room</small></button><button class="card" data-a="random"><span class="ico">🎲</span>RANDOM MATCH<small>Find opponent</small></button><button class="card" data-a="ranks"><span class="ico">🏆</span>LEADERBOARD<small>Top players</small></button><button class="card" data-a="profile"><span class="ico">👤</span>PROFILE<small>Your stats & info</small></button><button class="card" data-a="rewards"><span class="ico">🎁</span>DAILY REWARDS<small>Claim bonus</small></button><button class="card wide" data-a="settings">⚙️ SETTINGS</button><button class="card wide" data-a="help">❔ HELP & RULES</button></section><nav class="nav"><button class="active" data-a="home"><b>⌂</b>HOME</button><button data-a="play"><b>🎮</b>PLAY</button><button data-a="ranks"><b>🏆</b>RANKS</button><button data-a="profile"><b>♙</b>PROFILE</button></nav><div class="foot">♛ GOOD LUCK & HAPPY GAMING ♛</div><div id="status"></div></main><script>
-(function(){var d={};try{d=JSON.parse(TelegramWidget.chatData||'{}')}catch(e){}document.getElementById('coins').textContent=d.coins||0;document.getElementById('wins').textContent=d.wins||0;document.querySelectorAll('[data-a]').forEach(function(b){b.addEventListener('click',function(){var a=b.getAttribute('data-a');if(TelegramWidget&&TelegramWidget.request){var s=document.getElementById('status');s.textContent='Sending…';TelegramWidget.request(a).then(function(r){s.textContent=(r&&r.result)||'Done';}).catch(function(e){s.textContent='Could not send: '+(e.code||'ERROR');})}})})})();
-</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="color-scheme" content="dark">
+<style>
+:root{--bg:#08090d;--panel:#11131a;--panel2:#171922;--line:#2a2d38;--gold:#e7bd70;--gold2:#a87935;--muted:#9699a6;--white:#f5f2eb}
+*{box-sizing:border-box}
+body{margin:0;background:#08090d;color:var(--white);font:14px Inter,ui-sans-serif,system-ui,-apple-system,sans-serif}
+button{font:inherit}
+.shell{padding:14px;background:radial-gradient(ellipse at 50% -20%,#383020 0,transparent 48%),linear-gradient(160deg,#101117,#08090d 65%);border:1px solid #34302a;border-radius:22px;overflow:hidden}
+.header{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{display:flex;align-items:center;gap:9px;min-width:0}
+.crest{width:38px;height:38px;display:grid;place-items:center;border:1px solid #79603b;border-radius:12px;background:linear-gradient(145deg,#292319,#111216);color:var(--gold);font-size:21px;box-shadow:inset 0 1px #ffffff12}
+.brandname{font-size:14px;font-weight:900;letter-spacing:1.7px}
+.brandtag{font-size:9px;color:var(--muted);letter-spacing:2px;margin-top:2px}
+.live{font-size:9px;letter-spacing:1px;color:#b8d7b9;border:1px solid #314737;background:#142018;padding:6px 9px;border-radius:30px;white-space:nowrap}
+.hero{position:relative;margin:15px 0 12px;padding:17px 14px 14px;border:1px solid #49402f;border-radius:17px;background:linear-gradient(115deg,#201d18,#15151a 58%,#1d1a15);overflow:hidden}
+.hero:after{content:"♛";position:absolute;right:8px;top:-22px;font-size:116px;line-height:1;color:#e7bd70;opacity:.055;pointer-events:none}
+.eyebrow{font-size:9px;letter-spacing:2.5px;color:var(--gold);font-weight:800}
+h1{font-size:25px;line-height:1.08;margin:7px 0 6px;letter-spacing:-.8px;font-weight:900}
+h1 span{color:var(--gold)}
+.tagline{font-size:11px;color:#b8b6b0;line-height:1.5}
+.herofoot{display:flex;align-items:center;justify-content:space-between;margin-top:13px;gap:8px}
+.level{font-size:9px;color:#c8c1b4;letter-spacing:1px}
+.level b{color:var(--gold)}
+.mini-board{width:76px;height:76px;flex:none;border:1px solid #7b6542;border-radius:13px;padding:5px;background:#0d0e12;display:grid;grid-template-columns:1fr 1fr;gap:3px;transform:rotate(-4deg);box-shadow:0 7px 20px #0008}
+.quad{border-radius:5px;display:grid;place-items:center;font-size:16px}
+.q1{background:linear-gradient(145deg,#7b3436,#381c22)}.q2{background:linear-gradient(145deg,#386b50,#1d3329)}.q3{background:linear-gradient(145deg,#806633,#40321c)}.q4{background:linear-gradient(145deg,#355b80,#1b2b40)}
+.sectionhead{display:flex;align-items:center;justify-content:space-between;margin:14px 2px 8px}
+.sectionhead strong{font-size:10px;letter-spacing:1.8px}
+.sectionhead span{font-size:9px;color:var(--muted)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.stat{border:1px solid var(--line);background:linear-gradient(145deg,#171922,#101117);border-radius:12px;padding:10px 11px;display:flex;align-items:center;gap:9px}
+.staticon{width:30px;height:30px;border-radius:9px;background:#292319;border:1px solid #57462e;display:grid;place-items:center;font-size:15px}
+.stat small{display:block;font-size:8px;letter-spacing:1.2px;color:var(--muted)}
+.stat b{display:block;font-size:17px;margin-top:2px;color:var(--gold);font-variant-numeric:tabular-nums}
+.games{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.action{border:1px solid #38332a;background:linear-gradient(145deg,#1b1b20,#111218);color:var(--white);border-radius:13px;min-height:76px;padding:10px;text-align:left;display:flex;flex-direction:column;justify-content:space-between;gap:8px;cursor:pointer}
+.action.primary{grid-column:1/-1;min-height:88px;background:linear-gradient(110deg,#3a2e1d,#211d17 62%,#17171b);border-color:#8a6b3d;box-shadow:inset 0 1px #ffffff0c}
+.action:active{transform:scale(.985);background:#28241d}
+.actiontop{display:flex;align-items:center;justify-content:space-between}
+.actionicon{font-size:19px}
+.arrow{font-size:15px;color:var(--gold)}
+.action strong{font-size:11px;letter-spacing:.5px}
+.action small{display:block;font-size:9px;color:var(--muted);margin-top:3px}
+.action.primary strong{font-size:13px;color:#f1d49c}
+.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:8px}
+.tool{border:1px solid var(--line);background:#12141a;color:#d5d2ca;border-radius:10px;padding:9px 4px;font-size:9px;letter-spacing:.4px;display:flex;align-items:center;justify-content:center;gap:5px;min-height:38px}
+.tool:active{background:#25231f}
+.nav{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);margin-top:14px;padding-top:8px}
+.nav button{border:0;background:transparent;color:#858895;padding:5px 0;font-size:9px;letter-spacing:.5px}
+.nav b{display:block;font-size:17px;margin-bottom:3px;font-weight:500}
+.nav .active{color:var(--gold)}
+.footer{text-align:center;font-size:8px;color:#77736b;letter-spacing:2px;margin-top:8px}
+#status{text-align:center;color:var(--gold);font-size:10px;min-height:14px;margin-top:7px}
+</style>
+</head>
+<body>
+<main class="shell">
+<header class="header">
+ <div class="brand"><div class="crest">♛</div><div><div class="brandname">LUDO ARENA</div><div class="brandtag">THE ROYAL GAME CLUB</div></div></div>
+ <div class="live">● LIVE ARENA</div>
+</header>
+<section class="hero">
+ <div class="eyebrow">WELCOME TO THE ARENA</div>
+ <h1>Play with <span>honour.</span><br>Win with glory.</h1>
+ <div class="tagline">Every move matters. Every match makes a legend.</div>
+ <div class="herofoot"><div class="level">YOUR NEXT VICTORY<br><b>STARTS HERE ↗</b></div>
+  <div class="mini-board"><div class="quad q1">●</div><div class="quad q2">●</div><div class="quad q3">●</div><div class="quad q4">●</div></div>
+ </div>
+</section>
+<div class="sectionhead"><strong>PLAYER OVERVIEW</strong><span>YOUR ARENA STATS</span></div>
+<section class="stats">
+ <div class="stat"><div class="staticon">◈</div><div><small>COIN BALANCE</small><b id="coins">0</b></div></div>
+ <div class="stat"><div class="staticon">♛</div><div><small>MATCH VICTORIES</small><b id="wins">0</b></div></div>
+</section>
+<div class="sectionhead"><strong>CHOOSE YOUR BATTLE</strong><span>GAME MODES</span></div>
+<section class="games">
+ <button class="action primary" data-a="play"><div class="actiontop"><span class="actionicon">🎲</span><span class="arrow">↗</span></div><div><strong>ENTER THE ARENA</strong><small>Choose a game mode and begin your match</small></div></button>
+ <button class="action" data-a="solo"><div class="actiontop"><span class="actionicon">♟</span><span class="arrow">↗</span></div><div><strong>SOLO CHALLENGE</strong><small>Test your skills against AI</small></div></button>
+ <button class="action" data-a="friends"><div class="actiontop"><span class="actionicon">♧</span><span class="arrow">↗</span></div><div><strong>PLAY WITH FRIENDS</strong><small>Create a private room</small></div></button>
+ <button class="action" data-a="random"><div class="actiontop"><span class="actionicon">◎</span><span class="arrow">↗</span></div><div><strong>QUICK MATCH</strong><small>Find your next opponent</small></div></button>
+ <button class="action" data-a="ranks"><div class="actiontop"><span class="actionicon">🏆</span><span class="arrow">↗</span></div><div><strong>LEADERBOARD</strong><small>See the champions</small></div></button>
+</section>
+<div class="sectionhead"><strong>YOUR CLUB</strong><span>MORE</span></div>
+<section class="tools">
+ <button class="tool" data-a="profile">♙ PROFILE</button>
+ <button class="tool" data-a="rewards">✧ REWARDS</button>
+ <button class="tool" data-a="settings">⚙ SETTINGS</button>
+</section>
+<nav class="nav">
+ <button class="active" data-a="home"><b>⌂</b>HOME</button>
+ <button data-a="play"><b>⚄</b>PLAY</button>
+ <button data-a="ranks"><b>♛</b>RANKS</button>
+ <button data-a="profile"><b>♙</b>PROFILE</button>
+</nav>
+<div class="footer">LUDO ARENA · PLAY BEYOND ORDINARY</div>
+<div id="status"></div>
+</main>
+<script>
+(function(){
+ var d={};try{d=JSON.parse(TelegramWidget.chatData||'{}')}catch(e){}
+ document.getElementById('coins').textContent=d.coins||0;
+ document.getElementById('wins').textContent=d.wins||0;
+ document.querySelectorAll('[data-a]').forEach(function(b){
+  b.addEventListener('click',function(){
+   var a=b.getAttribute('data-a'),s=document.getElementById('status');
+   if(TelegramWidget&&TelegramWidget.request){
+    s.textContent='Opening…';
+    TelegramWidget.request(a).then(function(r){s.textContent=(r&&r.result)||'Done';})
+    .catch(function(e){s.textContent='Could not send: '+(e.code||'ERROR');});
+   }
+  });
+ });
+})();
+</script>
+</body>
+</html>
