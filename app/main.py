@@ -134,18 +134,29 @@ async def get_active_game(user_id: int):
 
 
 async def play_ai_turn(state: GameState, dice: int) -> str:
-    moves = legal_moves(state.players[1], dice)
-    if moves:
-        token = choose_ai_move(state.players[1], dice)
-        captured = move_token(state, 1, token, dice)
-        if state.status == "finished":
-            return "Arena AI won this match."
-        next_turn(state, dice)
-        if captured:
-            return f"Arena AI captured your token {captured[0][1] + 1}."
-        return f"Arena AI moved token {token + 1} by {dice}."
-    next_turn(state, dice)
-    return f"Arena AI rolled {dice}; no valid move."
+    notes = []
+    roll = dice
+    consecutive_sixes = 0
+    while state.status == "active" and state.current_player == 1:
+        moves = legal_moves(state.players[1], roll)
+        if moves:
+            token = choose_ai_move(state.players[1], roll)
+            captured = move_token(state, 1, token, roll)
+            if state.status == "finished":
+                return "Arena AI won this match."
+            notes.append(f"AI moved token {token + 1} by {roll}")
+            if captured:
+                notes.append("AI captured one of your tokens")
+        else:
+            notes.append(f"AI rolled {roll}; no valid move")
+        if roll == 6 and moves and consecutive_sixes < 2:
+            consecutive_sixes += 1
+            roll = secrets.randbelow(6) + 1
+            continue
+        state.current_player = 0
+        state.last_roll = None
+        break
+    return ". ".join(notes) or "Your turn."
 
 
 async def widget_game_action(user_id: int, action: dict) -> dict:
@@ -163,11 +174,11 @@ async def widget_game_action(user_id: int, action: dict) -> dict:
         state.last_roll = dice
         moves = legal_moves(state.players[0], dice)
         if not moves:
-            next_turn(state, dice)
+            state.current_player = 1
+            state.last_roll = None
             message = f"You rolled {dice}; no valid move."
-            if state.current_player == 1:
-                ai_dice = secrets.randbelow(6) + 1
-                message = await play_ai_turn(state, ai_dice)
+            ai_dice = secrets.randbelow(6) + 1
+            message += " " + await play_ai_turn(state, ai_dice)
         else:
             message = f"You rolled {dice}. Choose a highlighted token."
         await database.db.games.update_one({"_id": doc["_id"]}, {"$set": {
