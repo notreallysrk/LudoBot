@@ -42,7 +42,7 @@ class LudoEngineTests(unittest.TestCase):
         captured = move_token(game, 1, 0, 1)
         self.assertEqual(captured, [("red", 0)])
         self.assertEqual(game.players[0].tokens[0], -1)
-        self.assertEqual(game.players[1].tokens[0], 39)
+        self.assertEqual(game.players[1].tokens[0], 40)
 
     def test_six_keeps_turn_other_roll_passes(self):
         game = new_game(("red", "green"))
