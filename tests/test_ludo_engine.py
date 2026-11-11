@@ -27,11 +27,21 @@ class LudoEngineTests(unittest.TestCase):
     def test_safe_cell_prevents_capture(self):
         game = GameState([
             PlayerState("red", [0, -1, -1, -1]),
-            PlayerState("green", [39, -1, -1, -1]),
-        ])
-        # red starts on safe cell 0; green's offset 39 makes position 13 -> cell 0
-        move_token(game, 0, 0, 1) if False else None
+            PlayerState("green", [38, -1, -1, -1]),
+        ], current_player=1)
+        captured = move_token(game, 1, 0, 1)
+        self.assertEqual(captured, [])
         self.assertEqual(game.players[0].tokens[0], 0)
+        self.assertEqual(game.players[1].tokens[0], 39)
+
+    def test_unsafe_cell_captures_opponent(self):
+        game = GameState([
+            PlayerState("red", [1, -1, -1, -1]),
+            PlayerState("green", [38, -1, -1, -1]),
+        ], current_player=1)
+        captured = move_token(game, 1, 0, 1)
+        self.assertEqual(captured, [("red", 0)])
+        self.assertEqual(game.players[0].tokens[0], -1)
         self.assertEqual(game.players[1].tokens[0], 39)
 
     def test_six_keeps_turn_other_roll_passes(self):
