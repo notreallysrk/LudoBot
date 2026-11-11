@@ -37,7 +37,7 @@ class LudoEngineTests(unittest.TestCase):
     def test_unsafe_cell_captures_opponent(self):
         game = GameState([
             PlayerState("red", [1, -1, -1, -1]),
-            PlayerState("green", [38, -1, -1, -1]),
+            PlayerState("green", [39, -1, -1, -1]),
         ], current_player=1)
         captured = move_token(game, 1, 0, 1)
         self.assertEqual(captured, [("red", 0)])
