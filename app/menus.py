@@ -15,7 +15,6 @@ async def send_home_widget(chat_id: int, user: dict):
     return await call("sendWidget", {
         "chat_id": chat_id,
         "html": WIDGET_HTML,
-        "width": 0,
         "allow_queries": True,
         "chat_data": json.dumps(state, separators=(",", ":")),
         "caption": "👑 LUDO ARENA • Your arena. Your victory.",

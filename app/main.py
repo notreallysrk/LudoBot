@@ -9,7 +9,7 @@ from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import JSONResponse
 
 from app.config import settings
-from app.database import connect_db, close_db, db
+from app import database
 from app.menus import send_home_widget
 from app.telegram_api import call
 
@@ -20,7 +20,7 @@ bot = Bot(token=settings.bot_token)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    await connect_db()
+    await database.connect_db()
     me = await bot.get_me()
     log.info("Connected as @%s", me.username)
     if settings.webhook_base_url:
@@ -34,17 +34,21 @@ async def lifespan(app: FastAPI):
     if settings.webhook_base_url:
         await bot.delete_webhook(drop_pending_updates=False)
     await bot.session.close()
-    await close_db()
+    await database.close_db()
 
 app = FastAPI(title="Ludo Arena API", version="1.0.0", lifespan=lifespan)
 
+@app.get("/")
+async def home():
+    return {"status": "ok", "service": "ludo-arena", "phase": 1}
+
 @app.get("/health")
 async def health():
-    return {"ok": True, "service": "ludo-arena", "phase": 1}
+    return {"status": "ok", "service": "ludo-arena", "phase": 1}
 
 async def register_user(tg_user: dict):
     now = datetime.now(timezone.utc)
-    user = await db.users.find_one_and_update(
+    user = await database.db.users.find_one_and_update(
         {"telegram_id": tg_user["id"]},
         {"$set": {
             "first_name": tg_user.get("first_name", "Player"),
@@ -66,7 +70,14 @@ async def handle_message(message: dict):
         return
     user = await register_user(sender)
     if text.startswith("/start"):
-        await send_home_widget(chat["id"], user)
+        try:
+            await send_home_widget(chat["id"], user)
+        except Exception:
+            log.exception("Could not send Ludo Arena widget to chat %s", chat["id"])
+            await bot.send_message(
+                chat["id"],
+                "👑 Welcome to Ludo Arena!\nYour game menu is being prepared. Please try /start again shortly."
+            )
     elif text.startswith("/help"):
         await bot.send_message(chat["id"], "🎲 Ludo Arena\n/start — Open the royal game menu\n/help — Show help")
     else:
@@ -93,7 +104,7 @@ async def handle_widget_query(query: dict):
     }
     if action not in labels:
         labels[action] = "This feature will be enabled in a later phase."
-    await db.widget_actions.insert_one({
+    await database.db.widget_actions.insert_one({
         "telegram_id": viewer.get("id"), "action": action,
         "created_at": datetime.now(timezone.utc),
     })
