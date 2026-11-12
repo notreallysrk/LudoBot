@@ -17,5 +17,5 @@ async def send_home_widget(chat_id: int, user: dict):
         "html": WIDGET_HTML,
         "allow_queries": True,
         "chat_data": json.dumps(state, separators=(",", ":")),
-        "caption": "👑 LUDO ARENA • Your arena. Your victory.",
+        "caption": "🎲 CLASSIC LUDO • The timeless board game.",
     })
