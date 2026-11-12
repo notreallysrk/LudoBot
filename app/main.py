@@ -16,11 +16,11 @@ from app.ludo_engine import GameState, PlayerState, legal_moves, move_token, nex
 
 logging.basicConfig(level=getattr(logging, settings.log_level.upper(), logging.INFO),
                     format="%(asctime)s | %(levelname)s | %(name)s | %(message)s")
-log = logging.getLogger("ludo_arena")
+log = logging.getLogger("classic_ludo")
 bot = Bot(token=settings.bot_token)
 
 COLORS = ("red", "green")
-COLOR_LABELS = {"red": "You", "green": "Arena AI"}
+COLOR_LABELS = {"red": "You", "green": "Computer"}
 MAX_GAME_AGE_SECONDS = 60 * 60 * 4
 
 
@@ -43,17 +43,17 @@ async def lifespan(app: FastAPI):
     await database.close_db()
 
 
-app = FastAPI(title="Ludo Arena API", version="2.0.0", lifespan=lifespan)
+app = FastAPI(title="Classic Ludo API", version="2.0.0", lifespan=lifespan)
 
 
 @app.get("/")
 async def home():
-    return {"status": "ok", "service": "ludo-arena", "phase": 2}
+    return {"status": "ok", "service": "classic-ludo", "phase": 2}
 
 
 @app.get("/health")
 async def health():
-    return {"status": "ok", "service": "ludo-arena", "phase": 2}
+    return {"status": "ok", "service": "ludo-classic game", "phase": 2}
 
 
 async def register_user(tg_user: dict):
@@ -89,7 +89,7 @@ def game_payload(doc: dict, message: str = "") -> dict:
     return {
         "screen": "game",
         "game_id": str(doc["_id"]),
-        "message": message or ("Your turn — roll the dice" if state.current_player == 0 else "Arena AI is thinking…"),
+        "message": message or ("Your turn — roll the dice" if state.current_player == 0 else "Computer is thinking…"),
         "current_player": state.current_player,
         "current_color": player.color,
         "dice": dice,
